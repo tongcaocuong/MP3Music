@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_online"
+        android:title="Online"
+        android:icon="@drawable/ic_song"/>
+    <item android:id="@+id/nav_favorite"
+        android:title="favorite"
+        android:icon="@drawable/ic_favorite"/>
+    <item android:id="@+id/nav_my_music"
+        android:title="My music"
+        android:icon="@drawable/ic_my_music"/>
+</menu>

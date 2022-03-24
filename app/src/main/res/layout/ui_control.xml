@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="controller"
+            type="com.doan.mp3music.MediaController" />
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="vertical">
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{controller.songName}"/>
+        <SeekBar
+            android:id="@+id/sb_time"
+            android:max="@{controller.duration}"
+            android:progress="@{controller.position}"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            app:duration="@{controller.position}"
+            tools:text="03:30"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:src="@drawable/ic_prev"
+                android:onClick="@{v -> controller.change(-1)}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:src="@{controller.playing ? @drawable/ic_pause : @drawable/ic_play}"
+                android:layout_width="wrap_content"
+                android:onClick="@{v -> controller.playing ? controller.pause() : controller.start()}"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:src="@drawable/ic_next"
+                android:onClick="@{v -> controller.change(1)}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+</layout>
