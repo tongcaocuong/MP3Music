@@ -12,6 +12,7 @@ import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+
 public abstract class BaseFragment<BD extends ViewDataBinding, VM extends BaseViewModel> extends Fragment {
     protected BD binding;
     protected VM viewModel;
@@ -25,12 +26,14 @@ public abstract class BaseFragment<BD extends ViewDataBinding, VM extends BaseVi
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(this).get(getViewModelClass());
     }
 
     protected abstract Class<VM> getViewModelClass();
 
     protected abstract int getLayoutID();
+
+    public abstract BaseBindingAdapter getBaseAdapter();
 }

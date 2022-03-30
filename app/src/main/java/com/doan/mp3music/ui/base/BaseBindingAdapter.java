@@ -3,6 +3,8 @@ package com.doan.mp3music.ui.base;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
@@ -12,13 +14,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.doan.mp3music.BR;
 import com.doan.mp3music.models.BaseModel;
+import com.doan.mp3music.models.Song;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseBindingAdapter<T extends BaseModel> extends RecyclerView.Adapter<BaseBindingAdapter.BaseBindingHolder> {
+public class BaseBindingAdapter<T extends BaseModel> extends RecyclerView.Adapter<BaseBindingAdapter.BaseBindingHolder> implements Filterable {
 
     private List<T> data;
+    private List<T> dataAll;
     private @LayoutRes int resId;
     private LayoutInflater inflater;
     private BaseBindingListener listener;
@@ -30,6 +34,7 @@ public class BaseBindingAdapter<T extends BaseModel> extends RecyclerView.Adapte
 
     public void setData(List<T> data) {
         this.data = data;
+        this.dataAll = data;
         notifyDataSetChanged();
     }
 
@@ -64,6 +69,12 @@ public class BaseBindingAdapter<T extends BaseModel> extends RecyclerView.Adapte
         holder.binding.executePendingBindings();
     }
 
+    private FilterAdapter filterAdapter = new FilterAdapter();
+    @Override
+    public Filter getFilter() {
+        return filterAdapter;
+    }
+
     public class BaseBindingHolder extends RecyclerView.ViewHolder {
         private ViewDataBinding binding;
         public BaseBindingHolder(@NonNull ViewDataBinding binding) {
@@ -73,4 +84,31 @@ public class BaseBindingAdapter<T extends BaseModel> extends RecyclerView.Adapte
     }
 
     public interface BaseBindingListener{}
+
+
+    class FilterAdapter extends Filter {
+
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            FilterResults results = new FilterResults();
+            ArrayList<T> arr = new ArrayList<>();
+            for (T item: dataAll) {
+                if (item instanceof Song &&
+                        (((Song) item).getTitle().toUpperCase().contains(charSequence.toString().toUpperCase()) ||
+                                ((Song) item).getArtist().toUpperCase().contains(charSequence.toString().toUpperCase()))
+                ) {
+                    arr.add(item);
+                }
+            }
+            results.values = arr;
+            results.count = arr.size();
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            data = (List<T>) filterResults.values;
+            notifyDataSetChanged();
+        }
+    }
 }
