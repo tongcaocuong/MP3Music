@@ -3,6 +3,7 @@ package com.doan.mp3music.utils;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.doan.mp3music.models.BaseModel;
 import com.doan.mp3music.models.FieldInfo;
@@ -53,19 +54,25 @@ public class SystemData {
     private <T extends BaseModel> void setValue(Cursor c, T t, Field f, FieldInfo info) throws IllegalAccessException {
         int index = c.getColumnIndex(info.columnName());
         String value = c.getString(index);
-        switch (f.getType().getSimpleName()) {
-            case "long" :
-                f.setLong(t, Long.parseLong(value));
-                break;
-            case "int" :
-                f.setInt(t, Integer.parseInt(value));
-                break;
-            case "float" :
-                f.setFloat(t, Float.parseFloat(value));
-                break;
-            default:
-                f.set(t, value);
-                break;
+        try {
+            switch (f.getType().getSimpleName()) {
+                case "long" :
+                    f.setLong(t, Long.parseLong(value));
+                    break;
+                case "int" :
+                    f.setInt(t, Integer.parseInt(value));
+                    break;
+                case "float" :
+                    f.setFloat(t, Float.parseFloat(value));
+                    break;
+                default:
+                    f.set(t, value);
+                    break;
+            }
+        } catch (Exception e) {
+            Log.e(getClass().getName(), value + " ");
+            e.printStackTrace();
+
         }
     }
 }

@@ -12,20 +12,24 @@ import com.doan.mp3music.models.Song;
 import com.doan.mp3music.models.SongOnline;
 import com.doan.mp3music.ui.base.BaseBindingAdapter;
 import com.doan.mp3music.ui.base.BaseFragment;
+import com.doan.mp3music.ui.base.BaseViewModel;
+import com.doan.mp3music.ui.screen.MediaListener;
+import com.doan.mp3music.ui.screen.main.MainActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class OnlineFragment extends BaseFragment<FragmentOnlineBinding, OnlineViewModel> implements BaseBindingAdapter.BaseBindingListener {
+public class OnlineFragment extends BaseFragment<FragmentOnlineBinding, BaseViewModel> implements MediaListener<SongOnline> {
 
     private BaseBindingAdapter<SongOnline> adapter;
 
     @Override
-    protected Class<OnlineViewModel> getViewModelClass() {
-        return OnlineViewModel.class;
+    protected Class<BaseViewModel> getViewModelClass() {
+        return BaseViewModel.class;
     }
 
     @Override
@@ -40,7 +44,7 @@ public class OnlineFragment extends BaseFragment<FragmentOnlineBinding, OnlineVi
                 R.layout.item_song_online, getLayoutInflater());
         binding.setAdapter(adapter);
         adapter.setListener(this);
-        //getSong();
+        getSong();
     }
 
     public void getSong() {
@@ -55,5 +59,28 @@ public class OnlineFragment extends BaseFragment<FragmentOnlineBinding, OnlineVi
                 Toast.makeText(getContext(),  t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public void onItemMediaClicked(SongOnline item) {
+        ArrayList<Song> arr = new ArrayList<>();
+        for (SongOnline s: adapter.getData()) {
+            arr.add(s);
+        }
+
+        MainActivity activity = (MainActivity) getActivity();
+        activity.getService().setData(arr);
+        activity.getService().getController()
+                .create(adapter.getData().indexOf(item));
+    }
+
+    @Override
+    public void onUnFavoriteClicked(SongOnline item) {
+
+    }
+
+    @Override
+    public BaseBindingAdapter getBaseAdapter() {
+        return adapter;
     }
 }

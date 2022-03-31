@@ -6,6 +6,7 @@ import android.net.Uri;
 
 import com.doan.mp3music.models.Song;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +24,25 @@ public class MediaController implements MediaPlayer.OnCompletionListener {
     public void create(int index) {
         release();
         this.index = index;
-        Uri uri = Uri.parse(songs.get(index).getData());
-        player = MediaPlayer.create(context, uri);
-        start();
-        player.setOnCompletionListener(this);
+        String data = songs.get(index).getData();
+        if (!data.startsWith("http")) {
+            Uri uri = Uri.parse(songs.get(index).getData());
+            player = MediaPlayer.create(context, uri);
+            start();
+            player.setOnCompletionListener(this);
+        } else {
+            player = new MediaPlayer();
+            try {
+                player.setDataSource(data);
+                player.prepareAsync();
+                player.setOnPreparedListener(mediaPlayer -> {
+                    player.start();
+                    player.setOnCompletionListener(MediaController.this);
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void start() {
@@ -69,10 +85,6 @@ public class MediaController implements MediaPlayer.OnCompletionListener {
         return songs.get(index).getTitle();
     }
 
-    public String getSongImage() {
-        return "content://media/external/audio/albumart/" + songs.get(index).getAlbumId();
-    }
-
     public boolean isPlaying() {
         return player == null ? false : player.isPlaying();
     }
@@ -100,6 +112,10 @@ public class MediaController implements MediaPlayer.OnCompletionListener {
     @Override
     public void onCompletion(MediaPlayer mp) {
         change(1);
+    }
+
+    public Song getSong() {
+        return  songs.get(index);
     }
 
     public List<Song> getSongs() {

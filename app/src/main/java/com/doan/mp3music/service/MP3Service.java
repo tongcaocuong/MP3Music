@@ -103,32 +103,33 @@ public class MP3Service extends Service {
     }
 
     public void setData(final List<Song> songs) {
-        if (controller == null) {
-            controller = new MediaController(songs, this) {
-
-                @Override
-                public void create(int index) {
-                    super.create(index);
-                    if (!isRunning) {
-                        isRunning = true;
-                        Thread t = new Thread(run);
-                        t.start();
-                    }
-                }
-
-                @Override
-                public void pause() {
-                    super.pause();
-                    pushNotify(songs.get(index));
-                }
-
-                @Override
-                public void start() {
-                    super.start();
-                    pushNotify(songs.get(index));
-                }
-            };
+        if(controller != null) {
+            controller.release();
         }
+        controller = new MediaController(songs, this) {
+
+            @Override
+            public void create(int index) {
+                super.create(index);
+                if (!isRunning) {
+                    isRunning = true;
+                    Thread t = new Thread(run);
+                    t.start();
+                }
+            }
+
+            @Override
+            public void pause() {
+                super.pause();
+                pushNotify(songs.get(index));
+            }
+
+            @Override
+            public void start() {
+                super.start();
+                pushNotify(songs.get(index));
+            }
+        };
     }
 
     private Runnable run = new Runnable() {

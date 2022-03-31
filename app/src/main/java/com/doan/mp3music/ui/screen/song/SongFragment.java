@@ -1,6 +1,7 @@
 package com.doan.mp3music.ui.screen.song;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 
@@ -11,6 +12,9 @@ import com.doan.mp3music.ui.base.BaseBindingAdapter;
 import com.doan.mp3music.ui.base.BaseFragment;
 import com.doan.mp3music.ui.screen.MediaListener;
 import com.doan.mp3music.ui.screen.main.MainActivity;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class SongFragment extends BaseFragment<FragmentSongBinding, SongViewModel> implements MediaListener<Song> {
 
@@ -34,6 +38,14 @@ public class SongFragment extends BaseFragment<FragmentSongBinding, SongViewMode
         binding.setAdapter(adapter);
         adapter.setListener(this);
         adapter.setData(viewModel.getSong(getContext()));
+        binding.btnShuffle.setVisibility(View.VISIBLE);
+        binding.btnShuffle.setOnClickListener(v -> {
+            MainActivity activity = (MainActivity) getActivity();
+            ArrayList<Song> arr = viewModel.getSong(getContext());
+            Collections.shuffle(arr);
+            activity.getService().setData(arr);
+            activity.getService().getController().create(0);
+        });
     }
 
     @Override
@@ -42,5 +54,15 @@ public class SongFragment extends BaseFragment<FragmentSongBinding, SongViewMode
         activity.getService().setData(adapter.getData());
         activity.getService().getController()
                 .create(adapter.getData().indexOf(item));
+    }
+
+    @Override
+    public void onUnFavoriteClicked(Song item) {
+
+    }
+
+    @Override
+    public BaseBindingAdapter getBaseAdapter() {
+        return adapter;
     }
 }

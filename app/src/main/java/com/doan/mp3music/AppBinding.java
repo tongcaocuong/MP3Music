@@ -9,6 +9,8 @@ import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
 import com.doan.mp3music.api.ApiBuilder;
+import com.doan.mp3music.models.Song;
+import com.doan.mp3music.models.SongOnline;
 
 public class AppBinding {
 
@@ -26,13 +28,21 @@ public class AppBinding {
     }
 
     @BindingAdapter("thumb")
-    public static void thumb(ImageView im, long id) {
-        Uri uri = Uri
-                .parse("content://media/external/audio/albumart/" + id);
-        Glide.with(im)
-                .load(uri)
-                .error(R.drawable.ic_album)
-                .into(im);
+    public static void thumb(ImageView im, Song song) {
+        if (song == null) return;
+        if(song instanceof SongOnline) {
+            Glide.with(im)
+                    .load(((SongOnline) song).getImage())
+                    .error(R.drawable.ic_album)
+                    .into(im);
+        } else {
+            Uri uri = Uri
+                    .parse("content://media/external/audio/albumart/" + song.getAlbumId());
+            Glide.with(im)
+                    .load(uri)
+                    .error(R.drawable.ic_album)
+                    .into(im);
+        }
     }
 
     @BindingAdapter("image")

@@ -6,4 +6,5 @@ import com.doan.mp3music.ui.base.BaseBindingAdapter;
 public interface MediaListener<T extends BaseModel>
         extends BaseBindingAdapter.BaseBindingListener {
     void onItemMediaClicked(T item);
+    void onUnFavoriteClicked(T item);
 }
