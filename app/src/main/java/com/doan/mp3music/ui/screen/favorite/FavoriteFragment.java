@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import com.doan.mp3music.R;
 import com.doan.mp3music.api.ApiBuilder;
 import com.doan.mp3music.databinding.FragmentFavoriteBinding;
+import com.doan.mp3music.databinding.FragmentOnlineBinding;
 import com.doan.mp3music.models.Song;
 import com.doan.mp3music.models.SongOnline;
 import com.doan.mp3music.ui.base.BaseBindingAdapter;
@@ -16,9 +17,9 @@ import com.doan.mp3music.ui.base.BaseFragment;
 import com.doan.mp3music.ui.base.BaseViewModel;
 import com.doan.mp3music.ui.screen.MediaListener;
 import com.doan.mp3music.ui.screen.main.MainActivity;
-//import com.doan.mp3music.ui.screen.song.MediaListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import okhttp3.ResponseBody;

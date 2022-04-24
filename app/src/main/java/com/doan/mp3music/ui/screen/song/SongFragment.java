@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 
 import com.doan.mp3music.R;
 import com.doan.mp3music.databinding.FragmentSongBinding;
+import com.doan.mp3music.models.BaseModel;
 import com.doan.mp3music.models.Song;
 import com.doan.mp3music.ui.base.BaseBindingAdapter;
 import com.doan.mp3music.ui.base.BaseFragment;
@@ -42,6 +43,7 @@ public class SongFragment extends BaseFragment<FragmentSongBinding, SongViewMode
         binding.btnShuffle.setOnClickListener(v -> {
             MainActivity activity = (MainActivity) getActivity();
             ArrayList<Song> arr = viewModel.getSong(getContext());
+            if (arr.isEmpty()) return;
             Collections.shuffle(arr);
             activity.getService().setData(arr);
             activity.getService().getController().create(0);

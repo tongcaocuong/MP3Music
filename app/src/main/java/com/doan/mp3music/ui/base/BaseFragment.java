@@ -12,6 +12,8 @@ import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.doan.mp3music.models.BaseModel;
+import com.doan.mp3music.models.Song;
 
 public abstract class BaseFragment<BD extends ViewDataBinding, VM extends BaseViewModel> extends Fragment {
     protected BD binding;

@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.Color;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
@@ -23,14 +24,15 @@ import com.doan.mp3music.ui.base.BaseActivity;
 import com.doan.mp3music.ui.base.BaseViewModel;
 import com.doan.mp3music.ui.screen.MediaListener;
 import com.doan.mp3music.ui.screen.main.MainActivity;
-
 import com.doan.mp3music.utils.Dialog;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.UUID;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -51,6 +53,11 @@ public class PlayActivity extends BaseActivity<ActivityPlayBinding, BaseViewMode
             service = mp3Binder.getService();
             service.getLiveController().observe(PlayActivity.this, mediaController -> {
                 binding.setController(mediaController);
+                if (service.getController().isLooping()) {
+                    binding.imLoop.setColorFilter(getColor(R.color.colorPrimaryDark), android.graphics.PorterDuff.Mode.SRC_IN);
+                } else {
+                    binding.imLoop.setColorFilter(getColor(android.R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
+                }
                 if (!MainActivity.isVip) {
                     binding.imDownload.setVisibility(View.GONE);
                 }
@@ -108,6 +115,9 @@ public class PlayActivity extends BaseActivity<ActivityPlayBinding, BaseViewMode
         binding.tvList.setOnClickListener(view -> {
             dialog = PlayListDialog.newInstance(service, PlayActivity.this);
             dialog.show(getSupportFragmentManager(), null);
+        });
+        binding.imLoop.setOnClickListener(v -> {
+            service.getController().loop(!service.getController().isLooping());
         });
         binding.imBack.setOnClickListener(view -> finish());
         binding.imFavorite.setOnClickListener(v -> {

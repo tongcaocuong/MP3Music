@@ -75,6 +75,13 @@ public class MediaController implements MediaPlayer.OnCompletionListener {
         }
     }
 
+    public boolean isLooping() {
+        if (player!= null) {
+            return player.isLooping();
+        }
+        return false;
+    }
+
     public void seek(int position) {
         if (player != null) {
             player.seekTo(position);
