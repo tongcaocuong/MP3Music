@@ -3,6 +3,7 @@ package com.doan.mp3music.ui.screen.song;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.doan.mp3music.R;
@@ -32,8 +33,8 @@ public class SongFragment extends BaseFragment<FragmentSongBinding, SongViewMode
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         adapter = new BaseBindingAdapter<>(
                 R.layout.item_song, getLayoutInflater());
         binding.setAdapter(adapter);
@@ -48,6 +49,7 @@ public class SongFragment extends BaseFragment<FragmentSongBinding, SongViewMode
             activity.getService().setData(arr);
             activity.getService().getController().create(0);
         });
+        getActivity().setTitle("My Song");
     }
 
     @Override

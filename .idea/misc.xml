@@ -3,34 +3,34 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/DA/MP3Music/app/src/main/res/layout/activity_play.xml" value="0.2074074074074074" />
-        <entry key="..\:/DA/MP3Music/app/src/main/res/layout/fragment_favorite.xml" value="0.35052083333333334" />
-        <entry key="..\:/DA/MP3Music/app/src/main/res/layout/fragment_online.xml" value="0.35052083333333334" />
-        <entry key="..\:/DA/MP3Music/app/src/main/res/layout/ui_control.xml" value="0.35052083333333334" />
-        <entry key="..\:/Users/Asus/Desktop/MP3Music/MP3Music/app/src/main/res/drawable/ic_loop.xml" value="0.1" />
-        <entry key="..\:/Users/Asus/Desktop/MP3Music/MP3Music/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/Asus/Desktop/MP3Music/MP3Music/app/src/main/res/layout/activity_play.xml" value="0.1" />
-        <entry key="..\:/Users/Asus/Desktop/MP3Music/MP3Music/app/src/main/res/layout/fragment_favorite.xml" value="0.1" />
-        <entry key="..\:/Users/Asus/Desktop/MP3Music/MP3Music/app/src/main/res/layout/fragment_online.xml" value="0.1" />
-        <entry key="..\:/Users/Asus/Desktop/MP3Music/MP3Music/app/src/main/res/layout/fragment_song.xml" value="0.1" />
-        <entry key="..\:/Users/Asus/Desktop/MP3Music/MP3Music/app/src/main/res/layout/item_song.xml" value="0.1" />
-        <entry key="..\:/Users/Asus/Desktop/MP3Music/MP3Music/app/src/main/res/layout/item_song_favorite.xml" value="0.1" />
-        <entry key="..\:/Users/Asus/Desktop/MP3Music/MP3Music/app/src/main/res/layout/item_song_online.xml" value="0.1" />
-        <entry key="..\:/Users/Asus/Desktop/MP3Music/MP3Music/app/src/main/res/layout/ui_control.xml" value="0.1" />
-        <entry key="..\:/Users/Asus/Desktop/MP3Music/MP3Music/app/src/main/res/layout/ui_notification.xml" value="0.1" />
-        <entry key="..\:/Users/Asus/Desktop/MP3Music/MP3Music/app/src/main/res/menu/bottom_nav.xml" value="0.1" />
-        <entry key="..\:/Users/Asus/Desktop/MP3Music/MP3Music/app/src/main/res/menu/menu.xml" value="0.1" />
+        <entry key="..\:/Users/Asus/Desktop/DoAnDaiHoc_TongCaoCuong_2018601880/MP3Music/MP3Music/app/src/main/res/layout/fragment_main.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/Asus/Desktop/DoAnDaiHoc_TongCaoCuong_2018601880/MP3Music/MP3Music/app/src/main/res/layout/fragment_online.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/Asus/Desktop/DoAnDaiHoc_TongCaoCuong_2018601880/MP3Music/MP3Music/app/src/main/res/layout/fragment_song.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/Asus/Desktop/DoAnDaiHoc_TongCaoCuong_2018601880/MP3Music/MP3Music/app/src/main/res/layout/item_song_top.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/Asus/Desktop/DoAnDaiHoc_TongCaoCuong_2018601880/MP3Music/MP3Music/app/src/main/res/menu/menu.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/Asus/Documents/MP3Music/MP3Music/app/src/main/res/layout/fragment_main.xml" value="0.34512820512820513" />
+        <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/drawable/ic_eye.xml" value="0.2545" />
+        <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/drawable/ic_loop.xml" value="0.1925" />
         <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/drawable/ic_my_music.xml" value="0.22037037037037038" />
         <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/layout/activity_main.xml" value="0.13703703703703704" />
         <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/layout/activity_play.xml" value="0.18034447821681865" />
+        <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/layout/fragment_album.xml" value="0.3663949275362319" />
+        <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/layout/fragment_artist.xml" value="0.3663949275362319" />
         <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/layout/fragment_favorite.xml" value="0.18034447821681865" />
+        <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/layout/fragment_main.xml" value="0.39557399723374825" />
         <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/layout/fragment_my_music.xml" value="0.18034447821681865" />
         <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/layout/fragment_online.xml" value="0.18034447821681865" />
-        <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/layout/fragment_song.xml" value="0.37552083333333336" />
+        <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/layout/fragment_song.xml" value="0.18" />
+        <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/layout/item_album.xml" value="0.3663949275362319" />
+        <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/layout/item_artist.xml" value="0.3663949275362319" />
         <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/layout/item_song.xml" value="0.18034447821681865" />
+        <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/layout/item_song_favorite.xml" value="0.18034447821681865" />
         <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/layout/item_song_online.xml" value="0.37552083333333336" />
+        <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/layout/item_song_top.xml" value="0.3663949275362319" />
         <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/layout/ui_control.xml" value="0.18034447821681865" />
         <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/menu/bottom_nav.xml" value="0.25462962962962965" />
+        <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/menu/menu.xml" value="0.36512820512820515" />
+        <entry key="..\:/Users/Dark/Desktop/MP3Music/app/src/main/res/xml/searchable.xml" value="0.18034447821681865" />
       </map>
     </option>
   </component>

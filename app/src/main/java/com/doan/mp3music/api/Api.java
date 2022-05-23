@@ -1,5 +1,7 @@
 package com.doan.mp3music.api;
 
+import com.doan.mp3music.models.Album;
+import com.doan.mp3music.models.Artist;
 import com.doan.mp3music.models.SongOnline;
 
 import java.util.List;
@@ -16,6 +18,15 @@ public interface Api {
     @GET("song.php")
     Call<List<SongOnline>> getSong();
 
+    @GET("top-view.php")
+    Call<List<SongOnline>> getTopSong();
+
+    @GET("artist.php")
+    Call<List<Artist>> getArtist();
+
+    @GET("album.php")
+    Call<List<Album>> getAlbum();
+
     @GET("favorite.php")
     Call<List<SongOnline>> getFavorite(@Query("device") String device);
 
@@ -25,6 +36,10 @@ public interface Api {
     @FormUrlEncoded
     @POST("add-favorite.php")
     Call<ResponseBody> addFavorite(@Field("device") String device, @Field("song_id") int songId);
+
+    @FormUrlEncoded
+    @POST("play.php")
+    Call<ResponseBody> play(@Field("song_id") int songId);
 
     @FormUrlEncoded
     @POST("remove-favorite.php")

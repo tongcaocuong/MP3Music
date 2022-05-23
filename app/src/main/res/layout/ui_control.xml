@@ -36,27 +36,27 @@
                 app:duration="@{controller.position}"
                 tools:text="03:30"/>
         </LinearLayout>
-        <!--        <LinearLayout-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:gravity="center"-->
-        <!--            android:layout_marginTop="10dp"-->
-        <!--            android:orientation="horizontal">-->
-        <!--            <ImageView-->
-        <!--                android:src="@drawable/ic_prev"-->
-        <!--                android:onClick="@{v -> controller.change(-1)}"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"/>-->
-        <!--            <ImageView-->
-        <!--                android:src="@{controller.playing ? @drawable/ic_pause : @drawable/ic_play}"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:onClick="@{v -> controller.playing ? controller.pause() : controller.start()}"-->
-        <!--                android:layout_height="wrap_content"/>-->
-        <!--            <ImageView-->
-        <!--                android:src="@drawable/ic_next"-->
-        <!--                android:onClick="@{v -> controller.change(1)}"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"/>-->
-        <!--        </LinearLayout>-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:orientation="horizontal">-->
+<!--            <ImageView-->
+<!--                android:src="@drawable/ic_prev"-->
+<!--                android:onClick="@{v -> controller.change(-1)}"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"/>-->
+<!--            <ImageView-->
+<!--                android:src="@{controller.playing ? @drawable/ic_pause : @drawable/ic_play}"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:onClick="@{v -> controller.playing ? controller.pause() : controller.start()}"-->
+<!--                android:layout_height="wrap_content"/>-->
+<!--            <ImageView-->
+<!--                android:src="@drawable/ic_next"-->
+<!--                android:onClick="@{v -> controller.change(1)}"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"/>-->
+<!--        </LinearLayout>-->
     </LinearLayout>
 </layout>

@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 public class Song extends BaseModel {
     @FieldInfo(columnName = MediaStore.Audio.Media._ID)
     private int id;
-    @SerializedName("link") 
+    @SerializedName("link")
     @FieldInfo(columnName = MediaStore.Audio.Media.DATA)
     private String data;
     @FieldInfo(columnName = MediaStore.Audio.Media.TITLE)

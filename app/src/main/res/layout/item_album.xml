@@ -4,10 +4,10 @@
     <data>
         <variable
             name="listener"
-            type="com.doan.mp3music.ui.screen.MediaListener&lt;com.doan.mp3music.models.SongOnline>" />
+            type="com.doan.mp3music.ui.screen.MediaListener&lt;com.doan.mp3music.models.Album>" />
         <variable
             name="item"
-            type="com.doan.mp3music.models.SongOnline" />
+            type="com.doan.mp3music.models.Album" />
 
     </data>
 
@@ -28,7 +28,7 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                app:thumb="@{item}"/>
+                app:image="@{item.image}"/>
         </androidx.cardview.widget.CardView>
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,12 +36,8 @@
             android:orientation="vertical"
             android:layout_marginLeft="16dp">
             <TextView
-                android:text="@{item.title}"
+                android:text="@{item.name}"
                 android:textStyle="bold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:text="@{item.artistName}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>

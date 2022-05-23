@@ -2,8 +2,10 @@ package com.doan.mp3music.ui.screen.favorite;
 
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.doan.mp3music.R;
@@ -42,13 +44,14 @@ public class FavoriteFragment extends BaseFragment<FragmentFavoriteBinding, Base
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         adapter = new BaseBindingAdapter<>(
                 R.layout.item_song_favorite, getLayoutInflater());
         binding.setAdapter(adapter);
         adapter.setListener(this);
         getSong();
+        getActivity().setTitle("Playlist");
     }
 
     public void getSong() {

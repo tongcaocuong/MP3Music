@@ -12,8 +12,13 @@ import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.doan.mp3music.R;
 import com.doan.mp3music.models.BaseModel;
 import com.doan.mp3music.models.Song;
+import com.doan.mp3music.ui.screen.favorite.FavoriteFragment;
+import com.doan.mp3music.ui.screen.main.MainActivity;
+import com.doan.mp3music.ui.screen.online.OnlineFragment;
+import com.doan.mp3music.ui.screen.song.SongFragment;
 
 public abstract class BaseFragment<BD extends ViewDataBinding, VM extends BaseViewModel> extends Fragment {
     protected BD binding;
@@ -31,6 +36,9 @@ public abstract class BaseFragment<BD extends ViewDataBinding, VM extends BaseVi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(this).get(getViewModelClass());
+        if (((MainActivity)getActivity()).menu != null) {
+            ((MainActivity) getActivity()).menu.findItem(R.id.menu_search).setVisible((this instanceof SongFragment || this instanceof OnlineFragment || this instanceof FavoriteFragment));
+        }
     }
 
     protected abstract Class<VM> getViewModelClass();

@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.android.billingclient.api.BillingClient;
@@ -27,6 +28,8 @@ import com.android.billingclient.api.SkuDetailsParams;
 import com.android.billingclient.api.SkuDetailsResponseListener;
 import com.doan.mp3music.api.ApiBuilder;
 import com.doan.mp3music.ui.base.BaseViewModel;
+import com.doan.mp3music.ui.screen.album.AlbumFragment;
+import com.doan.mp3music.ui.screen.artist.ArtistFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.doan.mp3music.R;
 import com.doan.mp3music.databinding.ActivityMainBinding;
@@ -45,14 +48,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewModel> implements BottomNavigationView.OnNavigationItemSelectedListener, SearchView.OnQueryTextListener {
+public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewModel> implements SearchView.OnQueryTextListener {
     public static boolean isVip = false;
     private OnlineFragment fmOnline = new OnlineFragment();
     private FavoriteFragment fmFavorite = new FavoriteFragment();
     private SongFragment fmMyMusic = new SongFragment();
+    private MainFragment fmMain = new MainFragment();
+    private ArtistFragment fmArtist = new ArtistFragment();
+    private AlbumFragment fmAlbum = new AlbumFragment();
+
     private BaseFragment fmShow;
     private MP3Service service;
-    private Menu menu;
+    public Menu menu;
 
     @Override
     protected Class<BaseViewModel> getViewModelClass() {
@@ -68,8 +75,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
             @Override
             public void onResult(boolean isGranted) {
                 if (isGranted) {
-                    binding.bottomNav.setOnItemSelectedListener(MainActivity.this);
-                    showFragment(fmOnline);
+                    showFragment(fmMain);
                     Intent intent = new Intent(MainActivity.this,
                             MP3Service.class);
                     bindService(intent, connection, Context.BIND_AUTO_CREATE);
@@ -111,8 +117,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
         }
     };
 
-    private void showFragment(BaseFragment fmShow) {
-        if (this.fmShow != null) {
+    public void showFragment(BaseFragment fmShow) {
+        if (this.fmShow != null && this.fmShow.getBaseAdapter() != null) {
             this.fmShow.getBaseAdapter().getFilter().filter("");
         }
         this.fmShow = fmShow;
@@ -120,28 +126,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
         transaction.setCustomAnimations(android.R.anim.slide_in_left,
                 android.R.anim.slide_out_right);
         transaction.replace(R.id.container, fmShow);
+        if(!(fmShow instanceof MainFragment)) {
+            transaction.addToBackStack(fmShow.getClass().getName());
+        }
         transaction.commit();
     }
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.nav_online:
-                showFragment(fmOnline);
-                break;
-            case R.id.nav_favorite:
-                showFragment(fmFavorite);
-                break;
-            case R.id.nav_my_music:
-                showFragment(fmMyMusic);
-                break;
-        }
-        return true;
     }
 
     @Override
@@ -245,5 +238,29 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
             public void onBillingServiceDisconnected() {
             }
         });
+    }
+
+    public OnlineFragment getFmOnline() {
+        return fmOnline;
+    }
+
+    public FavoriteFragment getFmFavorite() {
+        return fmFavorite;
+    }
+
+    public SongFragment getFmMyMusic() {
+        return fmMyMusic;
+    }
+
+    public MainFragment getFmMain() {
+        return fmMain;
+    }
+
+    public AlbumFragment getFmAlbum() {
+        return fmAlbum;
+    }
+
+    public ArtistFragment getFmArtist() {
+        return fmArtist;
     }
 }

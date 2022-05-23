@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 abstract public class ApiBuilder {
 
     public static String URL = "https://caocuongttn3.000webhostapp.com/";
-    //    public static String URL = "http://192.168.1.15/music/";
+//    public static String URL = "http://192.168.1.15/music/";
     private static Api api;
 
     public static Api getInstance() {
@@ -18,7 +18,7 @@ abstract public class ApiBuilder {
             OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
             api = new Retrofit.Builder()
-                    .baseUrl(URL)
+                    .baseUrl(URL+ "api/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build()

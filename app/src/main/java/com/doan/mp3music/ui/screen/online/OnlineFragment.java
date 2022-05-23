@@ -1,8 +1,10 @@
 package com.doan.mp3music.ui.screen.online;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.doan.mp3music.R;
@@ -27,6 +29,7 @@ import retrofit2.Response;
 public class OnlineFragment extends BaseFragment<FragmentOnlineBinding, BaseViewModel> implements MediaListener<SongOnline> {
 
     private BaseBindingAdapter<SongOnline> adapter;
+    private List<SongOnline> songs = new ArrayList<>();
 
     @Override
     protected Class<BaseViewModel> getViewModelClass() {
@@ -39,27 +42,18 @@ public class OnlineFragment extends BaseFragment<FragmentOnlineBinding, BaseView
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         adapter = new BaseBindingAdapter<>(
                 R.layout.item_song_online, getLayoutInflater());
         binding.setAdapter(adapter);
         adapter.setListener(this);
-        getSong();
+        adapter.setData(songs);
+        getActivity().setTitle("Song");
     }
 
-    public void getSong() {
-        ApiBuilder.getInstance().getSong().enqueue(new Callback<List<SongOnline>>() {
-            @Override
-            public void onResponse(Call<List<SongOnline>> call, Response<List<SongOnline>> response) {
-                adapter.setData(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<List<SongOnline>> call, Throwable t) {
-                Toast.makeText(getContext(),  t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
+    public void setSongs(List<SongOnline> songs) {
+        this.songs = songs;
     }
 
     @Override

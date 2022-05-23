@@ -3,6 +3,8 @@ package com.doan.mp3music.models;
 import android.net.Uri;
 import android.provider.MediaStore;
 
+import com.doan.mp3music.api.ApiBuilder;
+
 public class Album extends BaseModel{
     @FieldInfo(columnName = MediaStore.Audio.Albums._ID)
     private int id;
@@ -18,6 +20,12 @@ public class Album extends BaseModel{
 
     @FieldInfo(columnName = MediaStore.Audio.Albums.ARTIST_ID)
     private int artistId;
+
+    private String image;
+
+    public String getImage() {
+        return ApiBuilder.URL + image;
+    }
 
     public int getId() {
         return id;

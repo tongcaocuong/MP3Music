@@ -3,12 +3,19 @@ package com.doan.mp3music;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.util.Log;
 
+import com.doan.mp3music.api.ApiBuilder;
 import com.doan.mp3music.models.Song;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MediaController implements MediaPlayer.OnCompletionListener {
     private List<Song> songs;
@@ -36,6 +43,17 @@ public class MediaController implements MediaPlayer.OnCompletionListener {
                 player.setDataSource(data);
                 player.prepareAsync();
                 player.setOnPreparedListener(mediaPlayer -> {
+                    ApiBuilder.getInstance().play(songs.get(index).getId()).enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Log.e(getClass().getName(), t.getMessage());
+                        }
+                    });
                     player.start();
                     player.setOnCompletionListener(MediaController.this);
                 });
